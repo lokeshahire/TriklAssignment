@@ -25,4 +25,15 @@ itemRouter.put("/:id", async (req, res) => {
   }
 });
 
+itemRouter.delete("/:id", async (req, res) => {
+  const id = req.params.id;
+
+  try {
+    await ItemModel.findByIdAndDelete({ _id: id });
+    res.send({ msg: "Item Deleted successfully" });
+  } catch (e) {
+    res.send("Something went wrong");
+  }
+});
+
 module.exports = { itemRouter };
